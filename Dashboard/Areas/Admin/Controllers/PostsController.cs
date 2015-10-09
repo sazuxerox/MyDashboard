@@ -10,6 +10,7 @@ namespace Dashboard.Areas.Admin.Controllers
     {
         //
         // GET: /Admin/Posts/
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return Content("ADMIN POSTS");
