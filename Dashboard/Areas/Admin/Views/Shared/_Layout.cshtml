@@ -16,14 +16,14 @@
 </head>
     <body>
         <div class="container">
-            <ul class="nav nav-pills">
+            <ul class="nav nav-tabs navbar-inverse">
                 <li class ="@SelectedTabClass("posts")">
                     @Html.ActionLink("posts", "Index", "Posts", new {area="admin"}, new{})
                 </li>
                 <li class="@SelectedTabClass("users")">
                     @Html.ActionLink("users", "Index", "Users", new { area = "admin" }, new { })
                 </li>
-                <li class="pull-right">
+                <li class="">
                     @Html.RouteLink("Back to Website", "Home")
                 </li>
             </ul>
@@ -31,5 +31,9 @@
         </div>
         @Scripts.Render("~/admin/scripts")
         @RenderSection("Scripts", false)
+
+        <form class="hidden" id="anti-forgery-form">
+            @Html.AntiForgeryToken()
+        </form>
     </body>
 </html>
