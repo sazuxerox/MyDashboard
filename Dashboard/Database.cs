@@ -2,6 +2,7 @@
 using Dashboard.Models;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Mapping;
 using NHibernate.Mapping.ByCode;
 
 namespace Dashboard
@@ -26,6 +27,9 @@ namespace Dashboard
             //add mapping
             var mapper = new ModelMapper();
             mapper.AddMapping<UserMap>();
+            mapper.AddMapping<RoleMap>();
+            mapper.AddMapping<TagMap>();
+            mapper.AddMapping<PostMap>();
             config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
             //create session factory

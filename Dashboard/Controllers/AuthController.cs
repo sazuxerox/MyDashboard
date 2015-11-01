@@ -23,7 +23,7 @@ namespace Dashboard.Controllers
             var user = Database.Session.Query<User>().FirstOrDefault(u => u.Username == form.Username);
 
             if (user == null)
-                Dashboard.Models.User.FakeHash();
+                Models.User.FakeHash();
 
             if(user == null || !user.CheckPassword(form.Password))
                ModelState.AddModelError("Username", "Username or password is incorrect");

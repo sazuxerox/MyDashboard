@@ -9,7 +9,7 @@ namespace Dashboard
     {
         private const string UserKey = "Dashboard.Auth.UserKey";
 
-        private static User User
+        public static User User
         {
             get
             {

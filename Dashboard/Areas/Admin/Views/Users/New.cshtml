@@ -19,6 +19,9 @@
         @Html.LabelFor(x => x.Password)
         @Html.PasswordFor(x => x.Password, new {@class = "form-control"})
     </div>
+    
+    @Html.Partial("_RoleEditor", Model.Roles)
+    
     <input type="submit" value="Create User" class="btn btn-primary"/>
     <a href="@Url.Action("index")" class="btn btn-warning">Cancel</a>
 }

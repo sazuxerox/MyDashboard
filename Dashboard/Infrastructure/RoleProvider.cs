@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Dashboard.Infrastructure
 {
@@ -6,10 +7,7 @@ namespace Dashboard.Infrastructure
     {
         public override string[] GetRolesForUser(string username)
         {
-            if(username == "sazzad")
-            return new []{"admin"};
-
-            return new string[]{};
+            return Auth.User.Roles.Select(role => role.Name).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)
