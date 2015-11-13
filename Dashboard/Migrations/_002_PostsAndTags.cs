@@ -31,8 +31,8 @@ namespace Dashboard.Migrations
         public override void Down()
         {
             Delete.Table("post_tags");
-            Delete.Table("posts");
             Delete.Table("tags");
+            Delete.Table("posts");
         }
     }
 }

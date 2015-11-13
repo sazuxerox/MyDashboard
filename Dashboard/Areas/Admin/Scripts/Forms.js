@@ -10,7 +10,7 @@
         }
 
         var antiForgeryToken = $("#anti-forgery-form input");
-        var antiForgeryInput = $("<input type='hidden'>").attr("name", antiForgeryToken.attr("name").val(antiForgeryToken).val());
+        var antiForgeryInput = $("<input type='hidden'>").attr("name", antiForgeryToken.attr("name")).val(antiForgeryToken.val());
 
         $("<form>")
             .attr("method", "post")
@@ -20,4 +20,18 @@
             .submit();
     });
 
+    $("[data-slug]").each(function() {
+        var $this = $(this);
+        var $sendSLugFrom = $($this.data("slug"));
+        $sendSLugFrom.keyup(function() {
+            var slug = $sendSLugFrom.val();
+            slug = slug.replace(/[^a-zA-Z0-9\s]/g, "");
+            slug = slug.toLowerCase();
+            slug = slug.replace(/\s+/g, "-");
+
+            if (slug.charAt(slug.length - 1) == "-")
+                slug = slug.substr(0, slug.length - 1);
+            $this.val(slug);
+        });
+    });
 });

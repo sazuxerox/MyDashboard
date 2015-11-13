@@ -1,5 +1,6 @@
 ﻿@model Dashboard.Areas.Admin.ViewModels.PostsIndex
 
+
 <h1>Posts</h1>
 
 <div class="btn-toolbar">
@@ -55,27 +56,28 @@
             {
                 cls = "danger";
             }
-            
+
             <tr class="@cls">
                 <td>@post.Title</td>
                 <td>@post.User.Username</td>
-                <td>@string.Join(", ", post.Tags.Select(t=>t.Name))</td>
+                <td>@string.Join(", ", post.Tags.Select(t => t.Name))</td>
                 <td>@post.CreatedAt</td>
                 <td>
-                    <a href="@Url.Action("Edit", new{post.Id})" class="btn btn-xs btn-primary">
+                    <a href="@Url.Action("edit", new {post.Id})" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i> edit
                     </a>
-                    
+
                     @if (!post.IsDeleted)
                     {
-                        <div class="btn-group btn-group-xs">
-                            <a href="@Url.Action("Trash", new{post.Id})" class="btn btn-danger" data-post="Are you sure you want to trash this post?">
-                                <i class="glyphicon glyphicon-remove"></i> Trash
+                       <div class="btn-group btn-group-xs">
+                            <a href="@Url.Action("trash", new {post.Id})" class="btn btn-danger" data-post="Are you sure you want to trash the post?">
+                                <i class="glyphicon glyphicon-remove"></i> trash
                             </a>
+                        
                             <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="@Url.Action("Delete", new {post.Id})" data-post="Are you sure you want to delete this post?">
+                                    <a href="@Url.Action("delete", new {post.Id})"  class="btn btn-xs btn-success" data-post="Are you sure you want to delete this post?">
                                         <i class="glyphicon glyphicon-remove"></i> delete
                                     </a>
                                 </li>
@@ -84,7 +86,7 @@
                     }
                     else
                     {
-                        <a href="@Url.Action("Restore", new{post.Id})" class="btn btn-xs btn-success" data-post="">
+                        <a href="@Url.Action("restore", new{post.Id})" data-post="" class="btn btn-success btn-xs">
                             <i class="glyphicon glyphicon-plus-sign"></i> restore
                         </a>
                     }

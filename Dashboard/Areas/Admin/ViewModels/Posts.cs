@@ -21,4 +21,5 @@ namespace Dashboard.Areas.Admin.ViewModels
         [Required, DataType(DataType.MultilineText)]
         public string Content { get; set; }
     }
+
 }

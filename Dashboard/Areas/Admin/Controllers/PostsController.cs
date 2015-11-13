@@ -46,6 +46,7 @@ namespace Dashboard.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
             return View("Form", new PostsForm
             {
                 IsNew = false,
@@ -71,7 +72,7 @@ namespace Dashboard.Areas.Admin.Controllers
             {
                 post = new Post
                 {
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.UtcNow,
                     User = Auth.User
                 };
             }
@@ -82,7 +83,7 @@ namespace Dashboard.Areas.Admin.Controllers
                 {
                     return HttpNotFound();
                 }
-                post.UpdatedAt = DateTime.Now;
+                post.UpdatedAt = DateTime.UtcNow;
             }
 
             post.Title = form.Title;
@@ -90,10 +91,10 @@ namespace Dashboard.Areas.Admin.Controllers
             post.Content = form.Content;
 
             Database.Session.SaveOrUpdate(post);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Posts");
         }
 
-
+    
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Trash(int id)
         {
@@ -102,11 +103,10 @@ namespace Dashboard.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            post.DeletedAt = DateTime.Now;
+            post.DeletedAt = DateTime.UtcNow;
             Database.Session.Update(post);
             return RedirectToAction("Index");
         }
-
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
@@ -116,11 +116,9 @@ namespace Dashboard.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            post.DeletedAt = DateTime.Now;
             Database.Session.Delete(post);
             return RedirectToAction("Index");
         }
-
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Restore(int id)

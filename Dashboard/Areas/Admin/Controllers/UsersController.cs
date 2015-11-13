@@ -27,9 +27,9 @@ namespace Dashboard.Areas.Admin.Controllers
         {
             return View(new UserNew
             {
-                Roles=Database.Session.Query<Role>().Select( role =>new RoleCheckBox
+                Roles = Database.Session.Query<Role>().Select(role => new RoleCheckBox
                 {
-                    Id=role.Id,
+                    Id = role.Id,
                     IsChecked = false,
                     Name = role.Name
                 }).ToList()
